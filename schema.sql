@@ -81,4 +81,4 @@ CREATE TABLE votes (
 );
 
 ALTER TABLE votes
-ADD UNIQUE (user_id, post_id)
+ADD UNIQUE (user_id, post_id);
