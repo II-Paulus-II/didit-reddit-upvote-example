@@ -2,9 +2,6 @@
 
 export default function GlobalError({ error, reset }) {
 
-  function letMeGoHome() {
-    goHome();
-  }
   return (
     <html>
       <body>

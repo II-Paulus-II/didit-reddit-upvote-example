@@ -4,6 +4,7 @@ import { saveComment } from "@/actions/comments";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import { useFormState } from "react-dom";
+import Tiptap from "./TipTap";
 
 export function CommentForm({ postId, parentCommentId }) {
   const session = useSession();
@@ -31,6 +32,7 @@ export function CommentForm({ postId, parentCommentId }) {
             Leave a comment, on post {postId}, parentcomment {parentCommentId}
           </h2> */}
           <form action={boundDispatch} className="flex flex-col space-y-3">
+            {/* <Tiptap /> */}
             <textarea
               name="comment"
               className="bg-zinc-800 p-3 rounded"
