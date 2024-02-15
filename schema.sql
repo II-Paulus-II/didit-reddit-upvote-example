@@ -79,3 +79,6 @@ CREATE TABLE votes (
     created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
     UNIQUE(user_id, post_id, comment_id, vote_type)
 );
+
+ALTER TABLE votes
+ADD UNIQUE (user_id, post_id)

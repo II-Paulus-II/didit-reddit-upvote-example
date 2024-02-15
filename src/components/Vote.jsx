@@ -10,11 +10,15 @@ export async function Vote({ postId, votes }) {
     const session = await auth();
     if(session) {
       console.log("Upvote", postId, "by user", session.user.id);
-      await db.query(
-        "INSERT INTO votes (user_id, post_id, vote, vote_type) VALUES ($1, $2, $3, $4)",
-        [session.user.id, postId, 1, "post"]
-      );
-
+      try {
+        await db.query(
+          "INSERT INTO votes (user_id, post_id, vote, vote_type) VALUES ($1, $2, $3, $4)",
+          [session.user.id, postId, 1, "post"]
+        );
+      }
+      catch (error) {
+        console.log(error);
+      }
       revalidatePath("/");
       revalidatePath(`/post/${postId}`);
     }
@@ -28,11 +32,15 @@ export async function Vote({ postId, votes }) {
     const session = await auth();
     if(session) {
       console.log("Downvote", postId, "by user", session.user.id);
-      await db.query(
-        "INSERT INTO votes (user_id, post_id, vote, vote_type) VALUES ($1, $2, $3, $4)",
-        [session.user.id, postId, -1, "post"]
-      );
-
+      try {
+        await db.query(
+          "INSERT INTO votes (user_id, post_id, vote, vote_type) VALUES ($1, $2, $3, $4)",
+          [session.user.id, postId, -1, "post"]
+        );
+      }
+      catch (error) {
+        console.log(error);
+      }   
       revalidatePath("/");
       revalidatePath(`/post/${postId}`);
     }
