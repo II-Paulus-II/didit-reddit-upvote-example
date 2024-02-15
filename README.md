@@ -4,6 +4,16 @@
 
 https://paulus-didit-example.vercel.app/
 
+## Fixes
+
+Fix page titles on post pages to match the post title  
+
+Handle the error when you click to vote while not logged in to show a nice error message  
+
+Try to make it so i can't vote more than once (Fix could be done in the SQL with the constraints  (ideally), or in app code to check the db before adding a new row to the votes table)  
+
+Deploy to Vercel
+
 # Shauns Notes
 
 ## Upvote

@@ -10,7 +10,7 @@ export function VoteButton({ label }) {
       className="border rounded border-zinc-600 px-3 py-2 hover:bg-pink-400 hover:text-black"
       disabled={pending}
     >
-      {pending ? `Saving ${label}` : label}
+      {pending ? `${label}-ing` : label}
     </button>
   );
 }
