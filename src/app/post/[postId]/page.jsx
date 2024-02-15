@@ -3,9 +3,7 @@ import { CommentList } from "@/components/CommentList";
 import { Vote } from "@/components/Vote";
 import { db } from "@/db";
 
-export default async function SinglePostPage({ params }) {
-  const postId = params.postId;
-
+async function getPost(id) {
   const { rows: posts } = await db.query(
     `SELECT posts.id, posts.title, posts.body, posts.created_at, users.name, 
     COALESCE(SUM(votes.vote), 0) AS vote_total
@@ -15,9 +13,16 @@ export default async function SinglePostPage({ params }) {
     WHERE posts.id = $1
     GROUP BY posts.id, users.name
     LIMIT 1;`,
-    [postId]
+    [id]
   );
-  const post = posts[0];
+  return posts[0];
+}
+
+export default async function SinglePostPage({ params }) {
+  const postId = params.postId;
+
+  const post = await getPost(postId);
+
 
   const { rows: votes } = await db.query(
     `SELECT *, users.name from votes
@@ -51,4 +56,15 @@ export default async function SinglePostPage({ params }) {
       </ul> */}
     </div>
   );
+}
+
+export async function generateMetadata({ params, searchParams }, parent) {
+  // read route params
+  const postId = params.postId
+
+  const post = await getPost(postId);
+ 
+  return {
+    title: post.title,
+  }
 }
