@@ -4,6 +4,8 @@
 
 https://paulus-didit-example.vercel.app/
 
+Enjoy!
+
 ## Fixes
 
 Fix page titles on post pages to match the post title  
